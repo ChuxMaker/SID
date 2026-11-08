@@ -22,6 +22,7 @@ SIDEngine::SIDEngine (SIDAudioProcessor& p)
 void SIDEngine::prepareToPlay (double sampleRate)
 {
     sid.reset();
+    regCache.clear();
     sid.set_chip_model (MOS6581);
     sid.set_sampling_parameters (1022730, SAMPLE_INTERPOLATE, sampleRate);
 }
@@ -334,6 +335,7 @@ void SIDEngine::prepareBlock (juce::AudioSampleBuffer& buffer)
 void SIDEngine::reset()
 {
     sid.reset();
+    regCache.clear();
 }
 
 void SIDEngine::handleMessage (const juce::MidiMessage& msg)
